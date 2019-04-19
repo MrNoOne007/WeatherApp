@@ -1,6 +1,7 @@
 <html>
 <head>
-	<title>Weather app <?php echo $_GET['Country'] ?></title>
+	<title>Weather app <?php echo $_GET['Coun']; ?></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -16,13 +17,13 @@
 	$get = json_decode(file_get_contents('http://ip-api.com/json/'), true);
 
 	date_default_timezone_set($get['timezone']);
-	$city = $_GET['Country'];
+	$city = $_GET['Coun'];
 	$string = "http://api.openweathermap.org/data/2.5/weather?q=" . $city . "&units=metric&appid=420e9a5a8e9e1054b3fa434d69db2c75";
 	$data = json_decode(file_get_contents($string), true);
 	$temp = $data['main']['temp'];
 	$icon = $data['weather'][0]['icon'];
 
-	$Country = "<h1 class='w3-xxxlarge w3-animate-zoom'><b>" . $data['name'] . "," . $data['sys']['Country'] . "</h1></b>";
+	$Country = "<h1 class='w3-xxxlarge w3-animate-zoom'><b>" . $data['name'] . $data['sys']['Country'] . "</h1></b>";
 
 	$logo = "<center><img src='http://openweathermap.org/img/w/" . $icon . ".png'></center>";
 	$desc = "<b><p>" . $data['weather'][0]['description'] . "</p></b>";
@@ -36,12 +37,19 @@
 	?>
 	<div class="w3-display-container w3-wide">
 		<img src="http://www.designbolts.com/wp-content/uploads/2014/03/Blue-Blur-Background1.jpg" style="width:100%;height:100%;" class="w3-image">
-		<div class="w3-display-topmiddle w3-margin-top">
+		<div class ="w3-display-topmiddle w3-margin-top">
 			<?php
 			echo $Country;
+			if ($data !=false) {
 			echo $logo;
+			}
+			if ($data == false) {
+				echo "This city is not available!  
+				Please select another one";
+			}
 			echo "<center><h3>" . $desc . "</h3></center>";
 			?>
+		</div>
 		</div>
 		<div class="w3-display-middle w3-margin-top w3-padding-top">
 			<div class="w3-animate-left w3-margin-top"><br><br><br>
