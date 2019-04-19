@@ -40,7 +40,7 @@
 			<?php
 			echo $Country;
 			echo $logo;
-			echo "<center><h2>" . $desc . "</h1></center>";
+			echo "<center><h3>" . $desc . "</h3></center>";
 			?>
 		</div>
 		<div class="w3-display-middle w3-margin-top w3-padding-top">
@@ -52,7 +52,7 @@
 					<?php echo $pressure; ?>
 					<?php echo $sunrise; ?>
 					<?php echo $sunset; ?>
-					</h2>
+					</h1>
 			</div>
 		</div>
 	</div>
